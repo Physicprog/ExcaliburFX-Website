@@ -1,67 +1,358 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ExcaliburFX Download</title>
-<link rel="stylesheet" href="style/style.css">
-<link rel="icon" type="image/png" href="assets/img/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExcaliburFX</title>
+    <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico?v=2">
+    <link rel="shortcut icon" href="./assets/logo/favicon.ico?v=2">
+    <link rel="apple-touch-icon" href="./assets/logo/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+        <header class="bar">
+            <a class="brand" href="#"><img src="./assets/logo/logo.png" alt="ExcaliburFX Logo" loading="lazy"></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#download">Download</a>
+                <a href="#contact">Contact</a>
+                <a href="pages/howToUse.html">How to use</a>
+            </nav>
+        </header>
 
-<div id="wrapper">
+<main class="main">
+    <section class="section banner-section">
+        <div class="container banner-column">
+            <div class="banner-circle">
+                <div class="banner-dynamic-image"></div>
+            </div>
+            <div class="banner-inner">
+                <h1 class="title-large">ExcaliburFX</h1>
+                <p class="text-base font-normal">
+                    Speed-up your workflow with ExcaliburFX.
+                    Access to a wide range of tools, presets, expressions and SFX libraries, and more to help you create easier your next project.
+                </p>
+                <div class="banner-buttons" style="display: flex; gap: 10px;">
+               
+                 <button type="button" class="btn btn-primary">
+                    Download Now 
+                </button>
+                 <button type="button" class="btn btn-third">
+                    <a href="pages/howToUse.html" style="color: inherit; text-decoration: none;">
+                        How To Use 
+                    </a>
+                </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div id="header">
-    <h1>EXCALIBURFX</h1>
-    <img src="assets/img/logo.png" alt="ExcaliburFX Logo" id="logo">
-  </div>
 
-  <div id="nav">
-    <a href="index.html">ACCUEIL</a>
-    <a href="page/contact.html">CONTACT</a>
-    <div class="lang">
-      <a href="#" onclick="setLang('fr');return false;" id="lang-fr" class="active">FR</a> 
-      <a href="#" onclick="setLang('en');return false;" id="lang-en">EN</a>
+        <main class="wrap" id="top">
+            <div class="stage-shell" id="about">
+                <div class="stage"
+                     id="stage"
+                     role="group"
+                     aria-label="Archive spool, drag sideways to wind through the plates">
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/01.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Presets Curves</h2>
+                            <p>Save and apply custom Bézier curves to keyframes. Copy and paste graph data directly across timeline selections.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/02.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Lives Curves</h2>
+                            <p>Apply curve to keyframes directly.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/03.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Work tab</h2>
+                            <p>Edit the layers on your timeline.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/04.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Presets and Plugins library</h2>
+                            <p>Save your most used presets and plugins for easy access.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/05.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Effects builder</h2>
+                            <p>Unique tools to work faster.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/07.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Colors tab</h2>
+                            <p>Choose from a wide range of colors or colors presets, color the layer or copy the #HEX code.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/08.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>SFX Library</h2>
+                            <p>Preview and add sound effects to your project. Or import your own. You can always change the default SFX.</p>
+                        </div>
+                    </div>
+                    
+                                        <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/09.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>SFX Effects</h2>
+                            <p>Apply effects, fade in/out and wave to your sound. You can change fades settings at any time.</p>
+                        </div>
+                    </div>
+                    
+                                        <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/10.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Expression Library</h2>
+                            <p>Apply expressions to your layers with the 80+ pre-built expressions. You can make a save your own expressions!</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/11.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Command chain</h2>
+                            <p>Apply a series of blocks to your layers. It will be rendered and placed on your timeline with the selected blocks.</p>
+                        </div>
+                    </div>
+                    <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/12.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Command chain presets</h2>
+                            <p>Save your own command chains..</p>
+                        </div>
+                    </div>
+                                        <div class="plate"
+                         role="button"
+                         tabindex="0"
+                         data-img="assets/images/13.png">
+                        <span class="plate-media"></span>
+                        <div class="plate-info">
+                            <h2>Settings Tab</h2>
+                            <p>Customize your excaliburFX interface: change themes, disable unused menus, and organize projects efficiently.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="scrub-shell rv" id="scrubShell">
+                <div class="scrub"
+                     id="scrub"
+                     role="slider"
+                     tabindex="0"
+                     aria-label="Spool position"
+                     aria-valuemin="1"
+                     aria-valuemax="9"
+                     aria-valuenow="1">
+                    <div class="scrub-track"></div>
+                    <div class="scrub-fill" id="scrubFill"></div>
+                    <div class="scrub-ticks" id="ticks"></div>
+                    <div class="thumb" id="thumb">
+                        <i></i><i></i>
+                    </div>
+                </div>
+                <div class="scrub-label" id="scrubLabel">01 / 09</div>
+            </div>
+            <section class="caption rv" id="caption" aria-live="polite">
+                <div class="cap-head">
+                    <span class="cap-no" id="capNo">01</span>
+                    <span class="cap-rule"></span>
+                    <h1 class="cap-title" id="capTitle">Presets Curves</h1>
+                </div>
+                <p class="cap-desc" id="capDesc"></p>
+                <div class="cap-meta" id="capMeta"></div>
+            </section>
+        </main>
+        
+
+
+<section class="download-section" id="download">
+    <div class="container">
+        <div class="dl-head rv">
+            <h2 class="title-large dl-title">Download</h2>
+            <p class="text-base font-normal">Download the latest version of ExcaliburFX.</p>
+        </div>
+
+        <ul class="dl-list rv">
+            <li>
+                <a class="dl-row"
+                   href="assets/installer/ExcaliburFX Installer.exe"
+                   download="ExcaliburFX Installer.exe">
+                    <span class="dl-no">01</span>
+                    <span class="dl-rule"></span>
+                    <span class="dl-name">Installer .exe</span>
+                    <span class="dl-hint">Recommended</span>
+                    <span class="dl-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+            <li>
+                <a class="dl-row"
+                   href="assets/installer/com.excaliburfx.cep.zxp"
+                   download="com.excaliburfx.cep.zxp">
+                    <span class="dl-no">02</span>
+                    <span class="dl-rule"></span>
+                    <span class="dl-name">Extension .zxp</span>
+                    <span class="dl-hint">Needs ZXP Installer</span>
+                    <span class="dl-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+        </ul>
+
+        <a class="dl-link rv" href="https://aescripts.com/learn/zxp-installer/" target="_blank" rel="noopener">
+            Get ZXP Installer (needed for .zxp installation)
+        </a>
     </div>
-  </div>
+</section>
 
-  <div id="content">
-
-    <div id="fr">
-      <div class="box">
-        <h2>Télécharger</h2>
-        <p>Extension CEP pour Adobe After Effects (2021+ conseillée).</p>
-        <a class="btn" href="ExcaliburFX_Windows.zxp">TÉLÉCHARGER Windows</a>
-        <a class="btn" href="ExcaliburFX_Mac.zxp">TÉLÉCHARGER Mac</a>
-        <p>Installation via <a href="https://zxpinstaller.com/" target="_blank">ZXP Installer</a> ou <a href="https://install.anastasiy.com/" target="_blank">Anastasiy's Extension Manager</a>.</p>
-        <a href="assets/Excalibur/used-assets.rar" target="_blank" download>Télécharger tous les assets utilisés</a>
-        <a href="https://github.com/PhysicProg/ExcaliburFX" target="_blank">Voir le dépôt GitHub</a>
-      </div>
+<footer class="footer-form" id="contact" role="contentinfo">
+    <div class="container">
+        <div class="footer-form__main">
+            <div class="footer-form__info">
+                <h3>Contact Information</h3>
+                <p>
+                    Any questions or bugs report? Feel free to reach out to us using the contact information below or send us a message using the form.
+                    I'm also available for inquiries regarding collaborations, partnerships, or any other business-related matters. 
+                </p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:excaliburfx@outlook.fr">excaliburfx@outlook.fr</a><br>
+                    <strong>Phone:</strong> <a href="tel:+330781123052">(33) 07 81 12 30 52</a>
+                </p>
+                <p>
+                    Based in Normandie, France<br>
+                </p>
+            </div>
+            <div class="footer-form__form-section">
+                <h3>Send a Quick Message</h3>
+                <form class="footer-form__form" id="footer-form"> 
+                    <input type="hidden" name="access_key" value="9ab756de-8e23-4747-a6e5-03ca251e40d6">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    
+                    <div class="form-group"> 
+                        <label for="footer-name">Your Name (optional)</label> 
+                        <input type="text" id="footer-name" name="name" class="form-control"> 
+                    </div>
+                    <div class="form-group"> 
+                        <label for="footer-email">Your Email</label> 
+                        <input type="email" id="footer-email" name="email" class="form-control" required> 
+                    </div>
+                    <div class="form-group"> 
+                        <label for="footer-message">Message</label> 
+                        <textarea id="footer-message" name="message" class="form-control" required></textarea> 
+                    </div> 
+                    <p class="form-privacy-note">Your details are sent to Web3Forms to forward your request. See our <a href="pages/politique-confidentialite.html">privacy notice</a>.</p>
+                    <button type="submit" class="footer-form__submit-button" id="footer-submit"> Send Message </button>
+                    <p id="footer-form-status" style="margin-top: 15px;" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+        <div class="footer-form__bottom">
+            <p>&copy; 2026 ExcaliburFX. All Rights Reserved.</p>
+            <nav class="legal-links" aria-label="Informations légales">
+                <a href="pages/mentions-legales.html">Mentions légales</a>
+                <a href="pages/politique-confidentialite.html">Confidentialité</a>
+                <a href="pages/politique-cookies.html">Cookies</a>
+                <a href="pages/conditions-utilisation.html">Conditions d'utilisation</a>
+            </nav>
+        </div>
     </div>
+</footer>
 
-    <div id="en" style="display:none;">
-      <div class="box">
-        <h2>Download</h2>
-        <p>CEP extension for Adobe After Effects (2021+ recommended).</p>
-        <a class="btn" href="assets/Excalibur/ExcaliburFX_Windows.zxp" download>TÉLÉCHARGER Windows</a>
-        <a class="btn" href="assets/Excalibur/ExcaliburFX_Mac.zxp" download>TÉLÉCHARGER Mac</a>
-        <p>Install using <a href="https://zxpinstaller.com/" target="_blank">ZXP Installer</a> or <a href="https://install.anastasiy.com/" target="_blank">Anastasiy's Extension Manager</a>.</p>
-        <a href="assets/Excalibur/used-assets.rar" target="_blank" download>Get all the used assets</a>
-        <a href="https://github.com/PhysicProg/ExcaliburFX" target="_blank">View the GitHub Repository</a>
-      </div>
-    </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("footer-form");
+    const button = document.getElementById("footer-submit");
+    const status = document.getElementById("footer-form-status");
+    
+    let statusTimeout; 
 
-  </div>
-
-  <div id="footer">
-    <a href="page/mentions-legales.html">Mentions légales</a>
-    <a href="page/confidentialite.html">Confidentialité</a>
-    <a href="page/contact.html">Contact</a>
-  </div>
-
-</div>
-
-<script src="js/script.js"></script>
-
+    form.addEventListener("submit", async function(event) {
+        event.preventDefault(); 
+        
+        button.disabled = true; 
+        button.textContent = "Sending..."; 
+        status.textContent = ""; 
+        status.style.color = ""; 
+        
+        if (statusTimeout) {
+            clearTimeout(statusTimeout);
+        }
+        
+        const formData = new FormData(form); 
+        
+        try { 
+            const response = await fetch("https://api.web3forms.com/submit", { 
+                method: "POST", 
+                body: formData 
+            }); 
+            const result = await response.json(); 
+            
+            if (result.success) { 
+                status.textContent = "Message sent successfully! Thank you for reaching out."; 
+                status.style.color = "#28a745"; 
+                form.reset(); 
+            } else { 
+                throw new Error(result.message || "Unable to send the message."); 
+            } 
+        } catch (error) { 
+            console.error("Web3Forms error:", error); 
+            status.textContent = "An error occurred. Please try again."; 
+            status.style.color = "#dc3545"; 
+        } finally {
+            button.disabled = false; 
+            button.textContent = "Send Message"; 
+            
+            statusTimeout = setTimeout(function() {
+                status.textContent = "";
+            }, 5000);
+        } 
+    }); 
+});
+</script>
+</main>
+<script src="js/main.js" defer></script>
 </body>
 </html>

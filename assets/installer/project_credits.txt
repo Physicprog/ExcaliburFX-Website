@@ -1,0 +1,22 @@
+CREDITS & ACKNOWLEDGMENTS
+ExcaliburFx - Version 1.0
+
+PROJECT LEAD & DEVELOPMENT
+- Created and maintained by Physic.vfx (@physic.vfx)
+
+SPECIAL THANKS
+- To all contributors and community members who provided feedback,
+  testing, and support throughout development.
+
+THIRD-PARTY ASSETS & LIBRARIES
+- None currently used (update this section if you integrate external
+  libraries, fonts, icon packs, or SDKs).
+
+USAGE RIGHTS
+- ExcaliburFx is provided for non-commercial use only.
+- Redistribution or resale of this extension, in whole or in part, is
+  strictly prohibited without written permission from Physic.vfx.
+- You may use ExcaliburFx on personal or internal projects; any commercial
+  use requires prior authorization.
+
+Thank you for using ExcaliburFx!

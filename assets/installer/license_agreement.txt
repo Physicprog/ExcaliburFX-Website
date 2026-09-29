@@ -1,0 +1,60 @@
+END USER LICENSE AGREEMENT (EULA)
+ExcaliburFx - Version 1.0
+Copyright (c) 2026 Physic.vfx. All rights reserved.
+
+NON-COMMERCIAL USE ONLY
+
+1. GRANT OF LICENSE
+Physic.vfx ("Licensor") grants you a personal, non-exclusive, non-transferable,
+revocable license to install and use ExcaliburFx ("the Software") strictly for
+non-commercial purposes.
+
+2. RESTRICTIONS
+You may NOT:
+- Sell, resell, sublicense, rent, or lease the Software or any part of it.
+- Use the Software for commercial projects, paid client work, or any
+  revenue-generating activity without prior written consent from Physic.vfx.
+- Redistribute, repackage, or upload the Software (modified or unmodified)
+  to any third-party platform, marketplace, or repository.
+- Reverse engineer, decompile, or disassemble the Software, except where
+  permitted by applicable law.
+- Remove or alter any copyright notices, branding, or attribution embedded
+  in the Software.
+
+3. OWNERSHIP
+The Software remains the sole property of Physic.vfx. This license does not
+transfer any ownership rights. All trademarks, logos, and assets included
+are property of their respective owners.
+
+4. NO WARRANTY
+The Software is provided "AS IS", without warranty of any kind, express or
+implied, including but not limited to warranties of merchantability, fitness
+for a particular purpose, and non-infringement. Physic.vfx does not guarantee
+uninterrupted or error-free operation.
+
+5. LIMITATION OF LIABILITY
+In no event shall Physic.vfx be liable for any direct, indirect, incidental,
+special, or consequential damages arising from the use or inability to use
+the Software, including but not limited to loss of data, loss of profits,
+or business interruption, even if advised of the possibility of such damages.
+
+6. DATA & PRIVACY
+This installer does not collect, transmit, or store any personal data.
+No telemetry, analytics, or tracking is performed during installation or
+use of the Software.
+
+7. TERMINATION
+This license is effective until terminated. Physic.vfx may terminate this
+license at any time if you fail to comply with any term herein. Upon
+termination, you must uninstall and cease all use of the Software.
+
+8. GOVERNING LAW
+This agreement shall be governed by and construed in accordance with the
+laws applicable in the jurisdiction of the Licensor, without regard to its
+conflict of law provisions.
+
+By clicking "I accept the agreement", you acknowledge that you have read,
+understood, and agree to be bound by the terms of this License Agreement.
+
+Physic.vfx - 2026
+Contact: @physic.vfx
