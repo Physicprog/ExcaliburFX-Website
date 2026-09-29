@@ -7,8 +7,9 @@
     --ink-2: #b29393;
     --ink-3: #795b5b;
     --accent: #d17f7f;
-
-       --footer-bg: transparent;
+    --gap: .6rem;
+    --duration: 20s;
+    --footer-bg: transparent;
    --footer-text: var(--ink-2);
    --footer-heading: var(--ink);
    --footer-border: var(--pastel);
@@ -981,6 +982,83 @@ img {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+.marquee-container {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    padding: .5rem 0;
+    mask-image: linear-gradient(
+        to right,
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 0% / 1) 10%,
+        hsl(0 0% 0% / 1) 90%,
+        hsl(0 0% 0% / 0)
+    ); /* Ajoute un effet de fondu sur les bords */
+}
+
+.marquee-group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scrollX var(--duration) linear infinite;
+}
+
+.marquee-item {
+    width: clamp(64px, 6vw, 120px);
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.marquee-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+@keyframes scrollX {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-100% - var(--gap)));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 560px) {
     .nav {
         gap: .35rem .65rem;
@@ -1017,6 +1095,10 @@ img {
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+    }
+
+    .marquee-group {
+        animation-duration: var(--duration) !important;
     }
 
     *,
