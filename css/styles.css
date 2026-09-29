@@ -43,7 +43,7 @@
 
 @font-face {
     font-family: 'Angel Wish';
-    src: url('../assets/font/Angel Wish.ttf') format('truetype');
+    src: url('../assets/font/Angel%20wish.ttf') format('truetype');
     font-weight: 300 700;
     font-style: normal;
 }
@@ -231,6 +231,7 @@ img {
 .banner-column {
     position: relative;
     display: grid;
+    width: min(100%, 75rem);
     align-items: center;
     justify-items: center;
     row-gap: 3rem;
@@ -880,6 +881,7 @@ img {
 }
 
 .dl-hint {
+    font-family: 'Museo Sans', 'Segoe UI', sans-serif;
     margin-left: auto;
     font-size: .7rem;
     letter-spacing: .16em;
