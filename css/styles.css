@@ -264,8 +264,8 @@ img {
 
 .banner-circle {
     position: relative;
-    width: 2rem;
-    height: 2rem;
+    width: min(76vw, 20rem);
+    height: min(76vw, 20rem);
     border-radius: 50%;
     justify-self: center;
     isolation: isolate;         
@@ -982,12 +982,35 @@ img {
 }
 
 @media (max-width: 560px) {
+    .nav {
+        gap: .35rem .65rem;
+    }
+
+    .nav a {
+        padding: 10px 0 4px;
+        font-size: .62rem;
+        letter-spacing: .05em;
+    }
+
     :root {
         --plate-w: min(80vw, 360px);
     }
 
     .cap-title {
         font-size: 1.28rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .nav {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        column-gap: .7rem;
+        row-gap: 0;
+    }
+
+    .nav a {
+        padding-block: 2px;
     }
 }
 
