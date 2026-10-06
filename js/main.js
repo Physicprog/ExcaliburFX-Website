@@ -689,6 +689,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/hero/10.png",
     "assets/hero/11.png",
     "assets/hero/12.png",
+    "assets/hero/13.png",
+    "assets/hero/14.png",
   ];
 
   const bannerImage = document.querySelector(".banner-dynamic-image");
