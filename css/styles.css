@@ -4,9 +4,9 @@
     --pastel: #5c3232;
     --pastel-deep: #964a4a;
     --ink: #E2E8F0;
-    --ink-2: #b29393;
+    --ink-2: #d1b8b8;
     --ink-3: #a17d7d;
-    --accent: #d17f7f;
+    --accent: #f0a6a6;
     --gap: .6rem;
     --duration: 20s;
     --footer-bg: transparent;
@@ -429,17 +429,20 @@ img {
 }
 
 .showcase-heading {
+    font-family: 'Angel Wish', 'Segoe UI', sans-serif;
     max-width: 42rem;
     margin: 0 auto 1rem;
     padding-inline: 1.5rem;
     text-align: center;
 }
 
-.showcase-heading h2 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+.showcase-heading h1 {
+    font-size: clamp(1.75rem, 8vw, 4.2rem);
 }
 
 .showcase-heading p {
+    font-family: 'Museo Sans', 'Segoe UI', sans-serif;
+    font-size: 1rem;
     margin-top: .65rem;
     color: var(--ink-2);
 }
