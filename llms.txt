@@ -1,0 +1,35 @@
+# ExcaliburFX
+
+ExcaliburFX is a motion-design extension for editing workflows. Its website documents and links to curve presets, keyframe tools, expressions, color controls, command chains, shake presets, and sound effects.
+
+The website and product information are published by Physic. The site is in English. Product downloads and source releases are hosted on GitHub.
+
+## Key pages
+
+- [Home and feature overview](https://excaliburfx-website.vercel.app/): product summary, feature gallery, downloads, and contact form.
+- [How to use ExcaliburFX](https://excaliburfx-website.vercel.app/pages/howToUse.html): installation instructions and feature guide.
+- [Latest GitHub release](https://github.com/Physicprog/ExcaliburFX/releases/latest): canonical release page and source repository.
+- [Windows installer](https://github.com/Physicprog/ExcaliburFX/releases/latest/download/ExcaliburFX.Installer.exe)
+- [CEP extension package](https://github.com/Physicprog/ExcaliburFX/releases/latest/download/com.excaliburfx.cep.zxp)
+- [Contact the publisher](mailto:excaliburfx@outlook.fr)
+
+## Feature overview
+
+- Save and apply custom Bézier curves to keyframes, and copy or paste graph data across timeline selections.
+- Apply curves directly to keyframes with Live Curves.
+- Work with timeline layers and a library of built-in expressions.
+- Build and reuse command chains and effect presets.
+- Preview, import, and adjust sound effects.
+- Customize the interface, themes, and visible menus.
+
+## Policies
+
+- [Legal notices](https://excaliburfx-website.vercel.app/pages/mentions-legales.html)
+- [Privacy policy](https://excaliburfx-website.vercel.app/pages/politique-confidentialite.html)
+- [Cookie policy](https://excaliburfx-website.vercel.app/pages/politique-cookies.html)
+- [Terms of use](https://excaliburfx-website.vercel.app/pages/conditions-utilisation.html)
+
+## Crawl information
+
+- [XML sitemap](https://excaliburfx-website.vercel.app/sitemap.xml)
+- [Robots policy](https://excaliburfx-website.vercel.app/robots.txt)

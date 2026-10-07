@@ -53,6 +53,8 @@
       alt: el.dataset.alt || "",
       mo: el.dataset.month || "",
       st: el.dataset.stock || "",
+      src: el.dataset.img || "",
+      loaded: false,
     };
     PLATES.push(p);
 
@@ -69,17 +71,7 @@
       data: p,
     });
 
-    var src = el.dataset.img;
-    if (src) {
-      var pre = new Image();
-      pre.onload = function () {
-        m.style.backgroundImage = "url('" + pre.src + "')";
-      };
-      pre.onerror = function () {
-        m.style.backgroundImage = fallback(i);
-      };
-      pre.src = src;
-    } else {
+    if (!p.src) {
       m.style.backgroundImage = fallback(i);
     }
 
@@ -90,6 +82,22 @@
     ticks.push(tk);
   });
 
+  function loadPlateImage(plate, i) {
+    var data = plate.data;
+    if (!data.src || data.loaded) return;
+    data.loaded = true;
+    var pre = new Image();
+    pre.decoding = "async";
+    pre.onload = function () {
+      plate.media.style.backgroundImage = "url('" + pre.src + "')";
+    };
+    pre.onerror = function () {
+      console.error("Unable to load feature image:", data.src);
+      plate.media.style.backgroundImage = fallback(i);
+    };
+    pre.src = data.src;
+  }
+
   var pos = 0,
     target = 0,
     raf = 0,
@@ -99,6 +107,7 @@
     RY = 54,
     COIL = 0.9,
     FALL = 0.52;
+  var stageVisible = false;
 
   function readVars() {
     var cs = getComputedStyle(document.documentElement);
@@ -147,6 +156,8 @@
         continue;
       }
       if (p.el.style.display === "none") p.el.style.display = "";
+
+      if (stageVisible) loadPlateImage(p, i);
 
       if (a < near) {
         near = a;
@@ -238,20 +249,20 @@
         capNo.textContent = i < 9 ? "0" + (i + 1) : i + 1;
         capTitle.textContent = p.t;
         capDesc.textContent = p.d;
-        capMeta.innerHTML =
-          "<span>" +
-          p.alt +
-          "</span><span>" +
-          p.mo +
-          "</span><span>" +
-          p.st +
-          "</span>";
+        capMeta.replaceChildren();
+        [p.alt, p.mo, p.st].forEach(function (text) {
+          if (!text) return;
+          var item = document.createElement("span");
+          item.textContent = text;
+          capMeta.appendChild(item);
+        });
         capEl.classList.remove("swap");
       },
       REDUCED ? 0 : 160,
     );
 
     scrub.setAttribute("aria-valuenow", i + 1);
+    scrub.setAttribute("aria-valuemax", N);
     scrub.setAttribute("aria-valuetext", i + 1 + " of " + N + ", " + p.t);
     scrubLab.textContent = (i < 9 ? "0" + (i + 1) : i + 1) + " / 0" + N;
     for (var k = 0; k < N; k++) ticks[k].classList.toggle("on", k === i);
@@ -654,10 +665,13 @@
 
   var stageIO = new IntersectionObserver(
     function (ents) {
-      document.body.classList.toggle("away", ents[0].intersectionRatio < 0.5);
+      stageVisible = ents[0].isIntersecting;
+      document.body.classList.toggle("away", !stageVisible);
+      if (stageVisible) render();
     },
     {
-      threshold: [0, 0.25, 0.5, 0.75, 1],
+      rootMargin: "300px 0px",
+      threshold: 0,
     },
   );
   stageIO.observe(stage);
@@ -678,19 +692,19 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const images = [
-    "assets/hero/01.png",
-    "assets/hero/02.png",
-    "assets/hero/03.png",
-    "assets/hero/04.png",
-    "assets/hero/05.png",
-    "assets/hero/07.png",
-    "assets/hero/08.png",
-    "assets/hero/09.png",
-    "assets/hero/10.png",
-    "assets/hero/11.png",
-    "assets/hero/12.png",
-    "assets/hero/13.png",
-    "assets/hero/14.png",
+    "assets/hero/01.webp",
+    "assets/hero/02.webp",
+    "assets/hero/03.webp",
+    "assets/hero/04.webp",
+    "assets/hero/05.webp",
+    "assets/hero/07.webp",
+    "assets/hero/08.webp",
+    "assets/hero/09.webp",
+    "assets/hero/10.webp",
+    "assets/hero/11.webp",
+    "assets/hero/12.webp",
+    "assets/hero/13.webp",
+    "assets/hero/14.webp",
   ];
 
   const bannerImage = document.querySelector(".banner-dynamic-image");
@@ -699,23 +713,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!bannerImage || !bannerCircle) return;
 
-  images.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-
-  bannerImage.style.backgroundImage = `url('${images[0]}')`;
-
   setInterval(() => {
-    bannerCircle.classList.add("is-flashing");
+    if (document.hidden) return;
+    const bounds = bannerCircle.getBoundingClientRect();
+    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
 
-    setTimeout(() => {
-      currentIndex = (currentIndex + 1) % images.length;
-      bannerImage.style.backgroundImage = `url('${images[currentIndex]}')`;
-    }, 800);
+    const nextIndex = (currentIndex + 1) % images.length;
+    const nextImage = new Image();
+    nextImage.decoding = "async";
+    nextImage.onload = () => {
+      bannerCircle.classList.add("is-flashing");
+      setTimeout(() => {
+        currentIndex = nextIndex;
+        bannerImage.removeAttribute("srcset");
+        bannerImage.src = nextImage.src;
+      }, 800);
 
-    setTimeout(() => {
-      bannerCircle.classList.remove("is-flashing");
-    }, 1000);
+      setTimeout(() => {
+        bannerCircle.classList.remove("is-flashing");
+      }, 1000);
+    };
+    nextImage.onerror = () => {
+      console.error("Unable to load hero image:", images[nextIndex]);
+    };
+    nextImage.src = images[nextIndex];
   }, 3500);
 });

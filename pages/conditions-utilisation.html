@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+        <a class="skip-link" href="#main-content">Skip to main content</a>
         <header class="bar">
-            <a class="brand" href="../index.html"><img src=".././assets/logo/logo.png" alt="ExcaliburFX Logo" loading="lazy"></a>
+            <a class="brand" href="../index.html#main-content" aria-label="ExcaliburFX home"><img src="../assets/logo/logo.webp" srcset="../assets/logo/logo-32.webp 32w, ../assets/logo/logo-64.webp 64w, ../assets/logo/logo.webp 128w" sizes="32px" alt="" width="32" height="32"></a>
             <nav class="nav" aria-label="Main navigation">
                 <a href="../index.html#about">About</a>
                 <a href="../index.html#download">Download</a>
@@ -19,7 +20,7 @@
                 <a href="howToUse.html">How to use</a>
             </nav>
         </header>
-    <main class="legal-page">
+    <main class="legal-page" id="main-content" tabindex="-1">
         <h1>Terms of Use</h1>
         <p class="legal-updated">Last updated: September 29, 2026</p>
         <p class="legal-alert">These conditions concern the site only. The rights of use of the ExcaliburFX software and its elements must be specified in a distinct license that you can consult while downloading the software or here <a href="../assets/installer/license_agreement.txt" download="license_agreement.txt">License Agreement</a> and <a href="../assets/installer/project_credits.txt" download="project_credits.txt">Project Credits</a>.</p>

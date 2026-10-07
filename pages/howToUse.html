@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+        <a class="skip-link" href="#main-content">Skip to main content</a>
         <header class="bar">
-            <a class="brand" href="../index.html"><img src=".././assets/logo/logo.png" alt="ExcaliburFX Logo" loading="lazy"></a>
+            <a class="brand" href="../index.html#main-content" aria-label="ExcaliburFX home"><img src="../assets/logo/logo.webp" srcset="../assets/logo/logo-32.webp 32w, ../assets/logo/logo-64.webp 64w, ../assets/logo/logo.webp 128w" sizes="32px" alt="" width="32" height="32"></a>
             <nav class="nav" aria-label="Main navigation">
                 <a href="../index.html#about">About</a>
                 <a href="../index.html#download">Download</a>
@@ -28,13 +29,13 @@
             </nav>
         </header>
 
-    <main class="legal-page">
+    <main class="legal-page" id="main-content" tabindex="-1">
         <h1>How to Use ExcaliburFX</h1>
         <p>Install the extension, then use this guide to explore its curve, expression, color, command-chain and sound tools. For help inside the extension, open the Settings tab and select the help section from the ExcaliburFX logo.</p>
 
         <h2>Install the extension</h2>
         <ol>
-            <li><a href="https://github.com/Physicprog/ExcaliburFX/releases/download/v1.0.1/ExcaliburFX.Installer.exe">Download the recommended ExcaliburFX Installer (.exe)</a>, or <a href="https://github.com/Physicprog/ExcaliburFX/releases/download/v1.0.1/com.excaliburfx.cep.zxp">download the extension (.zxp)</a> and install it with a <a href="https://aescripts.com/learn/zxp-installer/" target="_blank" rel="noopener">ZXP installer</a>.</li>
+            <li><a href="https://github.com/Physicprog/ExcaliburFX/releases/latest/download/ExcaliburFX.Installer.exe">Download the recommended ExcaliburFX Installer (.exe)</a>, or <a href="https://github.com/Physicprog/ExcaliburFX/releases/latest/download/com.excaliburfx.cep.zxp">download the extension (.zxp)</a> and install it with a <a href="https://aescripts.com/learn/zxp-installer/" target="_blank" rel="noopener noreferrer">ZXP installer</a>.</li>
             <li>Run the .exe installer, or use your ZXP installer to install the .zxp file.</li>
             <li>Open the application where you use ExcaliburFX and open the extension.</li>
         </ol>
@@ -68,6 +69,5 @@
                 <a href="../pages/conditions-utilisation.html">Conditions d'utilisation</a>
             </nav>
         </div>
-<script src="../js/main.js" defer></script>
 </body>
 </html>
