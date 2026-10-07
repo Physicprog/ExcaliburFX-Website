@@ -109,19 +109,6 @@
     FALL = 0.52;
   var stageVisible = false;
 
-  function readVars() {
-    var cs = getComputedStyle(document.documentElement);
-    function num(name, fb) {
-      var v = parseFloat(cs.getPropertyValue(name));
-      return isNaN(v) ? fb : v;
-    }
-    RX = num("--rx", 600);
-    RY = num("--ry", 54);
-    COIL = num("--coil", 0.9);
-    FALL = num("--fall", 0.52);
-  }
-  readVars();
-
   var range = 5;
 
   function readRange() {
@@ -141,8 +128,6 @@
       rotZ,
       sc,
       op,
-      sat,
-      bl,
       near = 999,
       nearI = 0;
 
@@ -157,8 +142,6 @@
       }
       if (p.el.style.display === "none") p.el.style.display = "";
 
-      if (stageVisible) loadPlateImage(p, i);
-
       if (a < near) {
         near = a;
         nearI = i;
@@ -172,9 +155,6 @@
 
       sc = Math.max(0.36, 1 / (1 + FALL * Math.pow(a, 1.15)));
       op = Math.max(0.14, 1 - 0.34 * a);
-      sat = 0.28 + 0.72 / (1 + 0.9 * a);
-      bl =
-        a < 1.6 || window.innerWidth < 900 ? 0 : Math.min(2.2, (a - 1.6) * 1.1);
 
       p.el.style.transform =
         "translate(-50%,-50%) translate3d(" +
@@ -196,13 +176,20 @@
         p.zi = zi;
       }
 
-      p.media.style.filter =
-        "saturate(" +
-        sat.toFixed(3) +
-        ")" +
-        (bl ? " blur(" + bl.toFixed(2) + "px)" : "");
       p.el.classList.toggle("is-centre", a < 0.5);
     }
+
+    plates.forEach(function (plate, index) {
+      var active = index === nearI;
+      var distance = Math.abs(((index - pos + N / 2 + N * 2) % N) - N / 2);
+      plate.el.classList.toggle("is-active", active);
+      if (
+        stageVisible &&
+        (active || (window.innerWidth >= 900 && distance <= 1.5))
+      ) {
+        loadPlateImage(plate, index);
+      }
+    });
 
     paintScrub();
     if (nearI !== settled) setCaption(nearI);
@@ -264,7 +251,8 @@
     scrub.setAttribute("aria-valuenow", i + 1);
     scrub.setAttribute("aria-valuemax", N);
     scrub.setAttribute("aria-valuetext", i + 1 + " of " + N + ", " + p.t);
-    scrubLab.textContent = (i < 9 ? "0" + (i + 1) : i + 1) + " / 0" + N;
+    scrubLab.textContent =
+      (i < 9 ? "0" + (i + 1) : i + 1) + " / " + (N < 10 ? "0" : "") + N;
     for (var k = 0; k < N; k++) ticks[k].classList.toggle("on", k === i);
   }
 
@@ -278,9 +266,9 @@
     if (v <= N - 1) frac = v / (N - 1);
     else frac = 1 - (v - (N - 1));
     frac = Math.max(0, Math.min(1, frac));
-    var w = scrub.clientWidth;
-    scrubFill.style.width = frac * 100 + "%";
-    thumb.style.left = frac * w + "px";
+    var travel = Math.max(0, scrub.clientWidth - 34);
+    scrubFill.style.width = frac * travel + "px";
+    thumb.style.left = 17 + frac * travel + "px";
   }
 
   function scrubTo(clientX) {
@@ -306,7 +294,6 @@
     kick();
   }
   scrub.addEventListener("pointerdown", function (e) {
-    if (playing) setPlay(false);
     scrubbing = true;
     try {
       scrub.setPointerCapture(e.pointerId);
@@ -360,7 +347,6 @@
   }
 
   function onDown(e) {
-    if (playing) setPlay(false);
     down = true;
     moved = false;
     startX = lastX = e.clientX;
@@ -400,6 +386,9 @@
     flick = Math.max(-2.2, Math.min(2.2, flick));
     target = Math.round(target + flick);
     kick();
+    setTimeout(function () {
+      moved = false;
+    }, 0);
   }
   stage.addEventListener("pointerdown", onDown);
   stage.addEventListener("pointermove", onMove);
@@ -412,26 +401,20 @@
     e.preventDefault();
   });
 
-  stage.addEventListener(
-    "wheel",
-    function (e) {
-      var raw =
-        (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) *
-        0.0032;
-      raw = Math.max(-0.9, Math.min(0.9, raw));
-      target += raw;
+  var previousButton = document.getElementById("showcasePrev");
+  var nextButton = document.getElementById("showcaseNext");
+  if (previousButton) {
+    previousButton.addEventListener("click", function () {
+      target = Math.round(target) - 1;
       kick();
-      clearTimeout(stage._wt);
-      stage._wt = setTimeout(function () {
-        target = Math.round(target);
-        kick();
-      }, 170);
-      e.preventDefault();
-    },
-    {
-      passive: false,
-    },
-  );
+    });
+  }
+  if (nextButton) {
+    nextButton.addEventListener("click", function () {
+      target = Math.round(target) + 1;
+      kick();
+    });
+  }
 
   plates.forEach(function (p, i) {
     p.el.addEventListener("click", function () {
@@ -470,180 +453,6 @@
     });
   });
 
-  document.addEventListener("keydown", function (e) {
-    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
-    if (e.key === "ArrowLeft") {
-      target = Math.round(target) - 1;
-      kick();
-    } else if (e.key === "ArrowRight") {
-      target = Math.round(target) + 1;
-      kick();
-    }
-  });
-
-  var tpBtn = document.getElementById("tpBtn");
-  var tpFill = document.getElementById("tpFill");
-  var tpVal = document.getElementById("tpVal");
-  var tpMinus = document.getElementById("tpMinus");
-  var tpPlus = document.getElementById("tpPlus");
-
-  var DUR_MIN = 1,
-    DUR_MAX = 9;
-  var dur = 2,
-    playing = false,
-    tStart = 0,
-    tRaf = 0;
-
-  function tick(now) {
-    if (!playing) return;
-    var f = (now - tStart) / (dur * 1000);
-    if (f >= 1) {
-      tStart = now;
-      f = 0;
-      target = Math.round(target) + 1;
-      kick();
-    }
-    if (tpFill) tpFill.style.width = (f * 100).toFixed(2) + "%";
-    tRaf = requestAnimationFrame(tick);
-  }
-
-  function setPlay(on) {
-    playing = on;
-    if (tpBtn) {
-      tpBtn.classList.toggle("playing", on);
-      tpBtn.setAttribute("aria-pressed", on ? "true" : "false");
-      tpBtn.setAttribute(
-        "aria-label",
-        on ? "Pause auto advance" : "Play auto advance",
-      );
-    }
-    cancelAnimationFrame(tRaf);
-    if (on) {
-      tStart = performance.now();
-      tRaf = requestAnimationFrame(tick);
-    } else if (tpFill) tpFill.style.width = "0%";
-  }
-
-  function setDur(v) {
-    dur = Math.max(DUR_MIN, Math.min(DUR_MAX, v));
-    if (tpVal) tpVal.textContent = dur + "s";
-    if (tpMinus) tpMinus.disabled = dur <= DUR_MIN;
-    if (tpPlus) tpPlus.disabled = dur >= DUR_MAX;
-    if (playing) tStart = performance.now();
-    else if (tpFill) tpFill.style.width = "0%";
-  }
-
-  if (tpBtn)
-    tpBtn.addEventListener("click", function () {
-      setPlay(!playing);
-    });
-  if (tpMinus)
-    tpMinus.addEventListener("click", function () {
-      setDur(dur - 1);
-    });
-  if (tpPlus)
-    tpPlus.addEventListener("click", function () {
-      setDur(dur + 1);
-    });
-
-  document.addEventListener("visibilitychange", function () {
-    if (!playing) return;
-    if (document.hidden) {
-      cancelAnimationFrame(tRaf);
-    } else {
-      tStart = performance.now();
-      tRaf = requestAnimationFrame(tick);
-    }
-  });
-
-  setDur(2);
-  setPlay(!REDUCED);
-
-  var fab = document.getElementById("fab");
-  var panel = document.getElementById("panel");
-  var closeBtn = document.getElementById("close");
-  var sRx = document.getElementById("sRx"),
-    sRy = document.getElementById("sRy"),
-    sFall = document.getElementById("sFall");
-  var vRx = document.getElementById("vRx"),
-    vRy = document.getElementById("vRy"),
-    vFall = document.getElementById("vFall");
-  var stateEl = document.getElementById("state");
-
-  function fill(el) {
-    var v = ((el.value - el.min) / (el.max - el.min)) * 100;
-    el.style.setProperty("--fill", v + "%");
-  }
-
-  function coilName(ry) {
-    if (ry <= 18) return "Flat reel";
-    if (ry <= 44) return "Slack coil";
-    if (ry <= 68) return "Working spool";
-    return "Tight winding";
-  }
-
-  function applyVars() {
-    document.documentElement.style.setProperty("--rx", sRx.value);
-    document.documentElement.style.setProperty("--ry", sRy.value);
-    document.documentElement.style.setProperty("--fall", sFall.value);
-    vRx.textContent = sRx.value;
-    vRy.textContent = sRy.value;
-    vFall.textContent = parseFloat(sFall.value).toFixed(2);
-    stateEl.textContent = coilName(parseFloat(sRy.value));
-    readVars();
-    render();
-  }
-  if (sRx && sRy && sFall && vRx && vRy && vFall && stateEl) {
-    [sRx, sRy, sFall].forEach(function (el) {
-      fill(el);
-      el.addEventListener("input", function () {
-        fill(el);
-        applyVars();
-      });
-    });
-  }
-
-  function setControl(open, focusIn) {
-    panel.classList.toggle("open", open);
-    fab.classList.toggle("gone", open);
-    fab.setAttribute("aria-expanded", open ? "true" : "false");
-    if (open && focusIn) sRx.focus();
-    if (!open && focusIn) fab.focus();
-  }
-  if (fab && panel && closeBtn && sRx) {
-    fab.addEventListener("click", function () {
-      setControl(true, true);
-    });
-    closeBtn.addEventListener("click", function () {
-      setControl(false, true);
-    });
-    setControl(false, false);
-  }
-
-  var burger = document.getElementById("burger"),
-    drawer = document.getElementById("drawer");
-
-  function setDrawer(open) {
-    drawer.classList.toggle("open", open);
-    document.body.classList.toggle("lock", open);
-    burger.setAttribute("aria-expanded", open ? "true" : "false");
-    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-  }
-  if (burger && drawer) {
-    burger.addEventListener("click", function () {
-      setDrawer(!drawer.classList.contains("open"));
-    });
-    drawer.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") setDrawer(false);
-    });
-  }
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key !== "Escape") return;
-    if (drawer && drawer.classList.contains("open")) setDrawer(false);
-    else if (panel && panel.classList.contains("open")) setControl(false, true);
-  });
-
   var io = new IntersectionObserver(
     function (ents) {
       ents.forEach(function (en) {
@@ -666,7 +475,6 @@
   var stageIO = new IntersectionObserver(
     function (ents) {
       stageVisible = ents[0].isIntersecting;
-      document.body.classList.toggle("away", !stageVisible);
       if (stageVisible) render();
     },
     {
@@ -680,7 +488,6 @@
   window.addEventListener("resize", function () {
     clearTimeout(rt);
     rt = setTimeout(function () {
-      readVars();
       readRange();
       render();
     }, 120);
@@ -689,53 +496,3 @@
   setCaption(0);
   render();
 })();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const images = [
-    "assets/hero/01.webp",
-    "assets/hero/02.webp",
-    "assets/hero/03.webp",
-    "assets/hero/04.webp",
-    "assets/hero/05.webp",
-    "assets/hero/07.webp",
-    "assets/hero/08.webp",
-    "assets/hero/09.webp",
-    "assets/hero/10.webp",
-    "assets/hero/11.webp",
-    "assets/hero/12.webp",
-    "assets/hero/13.webp",
-    "assets/hero/14.webp",
-  ];
-
-  const bannerImage = document.querySelector(".banner-dynamic-image");
-  const bannerCircle = document.querySelector(".banner-circle");
-  let currentIndex = 0;
-
-  if (!bannerImage || !bannerCircle) return;
-
-  setInterval(() => {
-    if (document.hidden) return;
-    const bounds = bannerCircle.getBoundingClientRect();
-    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
-
-    const nextIndex = (currentIndex + 1) % images.length;
-    const nextImage = new Image();
-    nextImage.decoding = "async";
-    nextImage.onload = () => {
-      bannerCircle.classList.add("is-flashing");
-      setTimeout(() => {
-        currentIndex = nextIndex;
-        bannerImage.removeAttribute("srcset");
-        bannerImage.src = nextImage.src;
-      }, 800);
-
-      setTimeout(() => {
-        bannerCircle.classList.remove("is-flashing");
-      }, 1000);
-    };
-    nextImage.onerror = () => {
-      console.error("Unable to load hero image:", images[nextIndex]);
-    };
-    nextImage.src = images[nextIndex];
-  }, 3500);
-});

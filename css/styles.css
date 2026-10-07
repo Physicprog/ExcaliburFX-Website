@@ -5,7 +5,7 @@
     --pastel-deep: #964a4a;
     --ink: #E2E8F0;
     --ink-2: #b29393;
-    --ink-3: #795b5b;
+    --ink-3: #a17d7d;
     --accent: #d17f7f;
     --gap: .6rem;
     --duration: 20s;
@@ -23,7 +23,7 @@
 
 @font-face {
     font-family: 'Museo Sans';
-    src: url('../assets/font/museosans.ttf') format('truetype');
+    src: url('../assets/font/museosans.woff2') format('woff2');
     font-weight: 300 700;
     font-style: normal;
     font-display: swap;
@@ -47,7 +47,7 @@
 
 @font-face {
     font-family: 'Angel Wish';
-    src: url('../assets/font/Angel%20wish.ttf') format('truetype');
+    src: url('../assets/font/Angel%20wish.woff2') format('woff2');
     font-weight: 300 700;
     font-style: normal;
     font-display: swap;
@@ -378,6 +378,9 @@ img {
 .brand {
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
     gap: .62rem;
     text-decoration: none;
     color: var(--ink);
@@ -410,7 +413,7 @@ img {
     text-transform: uppercase;
     font-weight: 300;
     padding: 14px 0 6px;
-    min-height: 44px;
+    min-height: 48px;
     display: flex;
     align-items: center;
 }
@@ -423,6 +426,22 @@ img {
 
 .stage-shell {
     padding-top: var(--bar);
+}
+
+.showcase-heading {
+    max-width: 42rem;
+    margin: 0 auto 1rem;
+    padding-inline: 1.5rem;
+    text-align: center;
+}
+
+.showcase-heading h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.showcase-heading p {
+    margin-top: .65rem;
+    color: var(--ink-2);
 }
 
 .stage {
@@ -476,6 +495,40 @@ img {
     box-shadow: 0 22px 46px -20px rgba(0, 0, 0, .65), 0 2px 6px rgba(0, 0, 0, .3);
 }
 
+.showcase-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(620px, calc(100vw - 44px));
+    margin: .25rem auto 0;
+}
+
+.showcase-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    min-width: 48px;
+    min-height: 48px;
+    padding: .65rem 1rem;
+    border: 1px solid var(--pastel);
+    border-radius: .5rem;
+    color: var(--ink);
+    background: var(--sunk);
+    font: inherit;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.showcase-nav:hover,
+.showcase-nav:focus-visible {
+    border-color: var(--accent);
+    background: var(--pastel-deep);
+}
+
+.showcase-nav span[aria-hidden="true"] {
+    font-size: 1.2rem;
+}
+
 .plate-media::after {
     content: "";
     position: absolute;
@@ -507,7 +560,7 @@ img {
 .caption {
     max-width: 620px;
     min-height: 7rem;
-    margin: 1.9rem auto 0;
+    margin: 1rem auto 0;
     padding: 0 clamp(18px, 5vw, 24px);
     transition: opacity .22s var(--ease), transform .22s var(--ease);
 }
@@ -593,8 +646,8 @@ img {
 
 .scrub-track {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 17px;
+    right: 17px;
     height: 4px;
     border-radius: 2px;
     background: var(--sunk);
@@ -603,7 +656,7 @@ img {
 
 .scrub-fill {
     position: absolute;
-    left: 0;
+    left: 17px;
     height: 4px;
     border-radius: 2px;
     background: var(--pastel-deep);
@@ -612,8 +665,8 @@ img {
 
 .scrub-ticks {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 17px;
+    right: 17px;
     height: 26px;
     pointer-events: none;
 }
@@ -705,6 +758,9 @@ img {
 
         .footer-form__info p { margin: 0 0 1rem 0; }
         .footer-form__info a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 48px;
             color: var(--footer-text);
             text-decoration: none;
             transition: color 0.2s;
@@ -723,6 +779,7 @@ img {
         
         .footer-form__form .form-control {
             width: 100%;
+            min-height: 48px;
             padding: 0.75rem;
             border: 1px solid var(--footer-border);
             background-color: #555;
@@ -783,6 +840,12 @@ img {
             text-underline-offset: .2em;
         }
 
+        .form-privacy-note a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 48px;
+        }
+
         .form-privacy-note a:hover,
         .legal-links a:hover {
             color: var(--footer-link-hover);
@@ -798,7 +861,7 @@ img {
         .legal-links a {
             display: flex;
             align-items: center;
-            min-height: 44px;
+            min-height: 48px;
         }
 
         .legal-page {
@@ -966,7 +1029,7 @@ img {
 .dl-link {
     display: flex;
     align-items: center;
-    min-height: 44px;
+    min-height: 48px;
     width: fit-content;
     max-width: 100%;
     margin: .5rem auto 0;
@@ -982,7 +1045,7 @@ img {
 .release-link {
     display: flex;
     align-items: center;
-    min-height: 44px;
+    min-height: 48px;
     width: fit-content;
     max-width: 100%;
     margin: .5rem auto 0;
@@ -1044,8 +1107,31 @@ img {
     }
 
     .stage {
-        height: 48vh;
-        min-height: 280px;
+        height: clamp(18rem, 64vw, 27rem);
+        min-height: 0;
+        perspective: none;
+        cursor: default;
+    }
+
+    .plate:not(.is-active) {
+        display: none !important;
+    }
+
+    .plate.is-active {
+        transform: translate(-50%, -50%) !important;
+        opacity: 1 !important;
+    }
+
+    .showcase-heading {
+        margin-bottom: .5rem;
+    }
+
+    .showcase-controls {
+        margin-top: .5rem;
+    }
+
+    .showcase-nav {
+        flex: 1;
     }
 
     .caption {
@@ -1080,6 +1166,25 @@ img {
         hsl(0 0% 0% / 1) 90%,
         hsl(0 0% 0% / 0)
     ); /* Ajoute un effet de fondu sur les bords */
+}
+
+@media (max-width: 900px) {
+    .marquee-container {
+        mask-image: none;
+    }
+
+    .marquee-group:first-child {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(48px, 64px));
+        justify-content: center;
+        gap: .75rem 1rem;
+        min-width: 100%;
+        animation: none;
+    }
+
+    .marquee-group:nth-child(2) {
+        display: none;
+    }
 }
 
 .marquee-group {
@@ -1137,7 +1242,7 @@ img {
     }
 
     .nav a {
-        padding: 10px 0 4px;
+        padding: 10px 0;
         font-size: .62rem;
         letter-spacing: .05em;
     }
